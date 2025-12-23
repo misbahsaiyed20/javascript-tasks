@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users list using ul</title>
+    <style>
+        .inactive {
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h2>Users list using ul</h2>
+    <ul id="userslist"></ul>
+
+    <script>
+        const users = [
+            { name: 'misba', isActive: true },
+            { name: 'sara', isActive: false },
+            { name: 'jeny', isActive: true },
+            { name: 'xyz', isActive: false },
+            { name: 'lilly', isActive: true }
+        ];
+
+        let list = document.getElementById("userslist");
+
+   
+        function showusers() {
+            list.innerHTML = ""; 
+
+            for (let i = 0; i < users.length; i++) {
+                let li = document.createElement("li");
+                li.innerText = users[i].name;
+
+                
+                if (users[i].isActive == false) {
+                    li.className = "inactive";
+                }
+
+              
+                let  button= document.createElement("button");
+                button.innerText = "Toggle Status";
+
+                
+                button.onclick = function () {
+                    users[i].isActive =! users[i].isActive;
+                    showusers();
+                };
+
+                li.appendChild(button);
+                list.appendChild(li);
+            }
+        }
+
+       
+        showusers();
+    </script>
+
+</body>
+</html>
