@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Activity Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h3>Smart Activity Tracker</h3>
+
+
+    <div class="add-activity">
+        <input type="text" id="add" placeholder="Add activity">
+        <button id="btn" disabled>Add Activity</button>
+        <p id="error"></p>
+    </div>
+
+
+    <div id="actcontainer">
+        
+    </div>
+
+    <div class="stats">
+        <p>Total activities: <span id="totalcount">0</span></p>
+        <p>Completed: <span id="completedcount">0</span></p>
+        <p>Pending: <span id="pendingcount">0</span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

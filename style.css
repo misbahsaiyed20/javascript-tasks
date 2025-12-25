@@ -1,0 +1,39 @@
+body {
+    font-family: Arial;
+    background-color: pink;
+    
+}
+
+h3{
+    text-align: center;
+}
+
+.add-activity{
+    text-align: center;
+    
+}
+.add-activity button:disabled {
+    background-color: bisque;
+}
+
+.error {
+    color: red;
+    font-size: 15px;
+}
+
+.container1 {
+    background-color: plum;
+    padding: 15px;
+    margin: 10px ;
+    width: 300px;
+    border-radius: 8px;
+
+}
+
+#actcontainer {
+    display: flex;
+}
+
+.completed {
+    opacity: 0.6;
+}
