@@ -25,19 +25,19 @@ else{
 }
 
 //Print numbers 1–100 (skip multiples of 5)
-
-num = 0;
-for (i = 0; i <= 100; i++){
-    if(i %5 != 0){
+let i = 0;
+while(i < 100){
+    if(i % 5 != 0){
         console.log(i);
-    }
+        i++;
+        }
 }
 
 //Simple calculator using switch
 
-let x = 100;
-let y = 50;
-calc = "add";
+const x = 100;
+const y = 50;
+let calc = "add";
 
 switch(calc){
     case "add":
