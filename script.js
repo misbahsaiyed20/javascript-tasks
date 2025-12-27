@@ -2,7 +2,7 @@ let activities = [];
 
 const activityinput = document.getElementById("add");
 const addbtn = document.getElementById("btn");
-const error = document.getElementById("error");
+const errorline = document.getElementById("err");
 const container = document.getElementById("actcontainer");
 
 const total = document.getElementById("totalcount");
@@ -10,21 +10,28 @@ const completed = document.getElementById("completedcount");
 const pending = document.getElementById("pendingcount");
 
 // input validation
-activityinput.addEventListener("input", () => {
-    if (activityinput.value.trim() === "") {
+activityinput.addEventListener("input", function () {
+    const value = activityinput.value.trim();
+
+    if (value === "") {
+        errorline.textContent = "Activity cannot be empty";
         addbtn.disabled = true;
-        error.textContent = "";
-    } else {
+    } 
+    else if (value.length < 3) {
+        errorline.textContent = "Activity name is too short";
+        addbtn.disabled = true;
+    } 
+    else {
+        errorline.textContent = "";
         addbtn.disabled = false;
     }
 });
 
-//adding activity
-addbtn.addEventListener("click", () => {
+// adding activity
+addbtn.addEventListener("click", function () {
     const activityText = activityinput.value.trim();
 
-    if (activityText === "") {
-        error.textContent = "Activity cannot be empty";
+    if (activityText === "" || activityText.length < 3) {
         return;
     }
 
@@ -57,25 +64,25 @@ function activitycard(activity) {
     date.textContent = "Created: " + activity.createdAt;
 
     const togglebtn = document.createElement("button");
-    togglebtn.textContent = "Done";
+    togglebtn.textContent = "toggle";
 
     togglebtn.addEventListener("click", () => {
-    activity.completed = !activity.completed;
+        activity.completed = !activity.completed;
 
-    if (activity.completed) {
-        status.textContent = "Status: Completed";
-        togglebtn.textContent = "Pending";
-        card.classList.add("completed");
-    } else {
-        status.textContent = "Status: Pending";
-        togglebtn.textContent = "Done";
-        card.classList.remove("completed");
-    }
+        if (activity.completed) {
+            status.textContent = "Status: Completed";
+            togglebtn.textContent = "Pending";
+            card.classList.add("completed");
+        } else {
+            status.textContent = "Status: Pending";
+            togglebtn.textContent = "Done";
+            card.classList.remove("completed");
+        }
 
-    updatestats();
-});
+        updatestats();
+    });
 
-card.appendChild(name);
+    card.appendChild(name);
     card.appendChild(status);
     card.appendChild(date);
     card.appendChild(togglebtn);
@@ -87,8 +94,8 @@ card.appendChild(name);
 function updatestats() {
     let completedcount = 0;
 
-    for(let i = 0; i < activities.length; i++) {
-        if (activities[i].completed === true) {
+    for (let i = 0; i < activities.length; i++) {
+        if (activities[i].completed) {
             completedcount++;
         }
     }
@@ -97,4 +104,3 @@ function updatestats() {
     completed.textContent = completedcount;
     pending.textContent = activities.length - completedcount;
 }
-
